@@ -12,7 +12,12 @@ class App extends Component {
         <div className="container h-100">
           <div className="row h-100 justify-content-center align-items-center">
             <ConfigComponent/>
-             
+            <div className="card text-center cardQClass" style={{width: "60rem"}}>
+            <div className="card-body">
+              <h5 className="card-title">Question</h5>
+              <p className="card-text" id="cardQ"></p>
+            </div>
+          </div>
           </div>
         </div>
       </div>
