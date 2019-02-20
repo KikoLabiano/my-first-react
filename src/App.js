@@ -8,7 +8,8 @@ import QuestionCardList from './components/QuestionCardList';
 class App extends Component {
 
   state = {
-    questions : []
+    answers : [],
+    question: ""
   };
 
   addNewQuestion = ()=>{
@@ -17,7 +18,9 @@ class App extends Component {
                     return response.json();
                     //this.questions.concat(response.json());
                 }).then((json) => {
-                  console.log(json.results);                
+                  this.setState(prevState=>({
+                    question : json.results[0].question
+                  }));                
                 });
   }
 
@@ -31,10 +34,10 @@ class App extends Component {
             <div className="card text-center cardQClass" style={{width: "60rem"}}>
                 <div className="card-body">
                   <h5 className="card-title">Question</h5>
-                  <p className="card-text" id="cardQ"></p>
+                  <p className="card-text" id="cardQ">{this.state.question}</p>
                 </div>
             </div>
-            <QuestionCardList/>
+            <QuestionCardList />
           </div>
 
           <button id="btnNewQ" type="button" className="btn btn-primary btn-lg btn-block" onClick={this.addNewQuestion}>New question</button>
