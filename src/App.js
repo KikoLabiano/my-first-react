@@ -8,7 +8,7 @@ import QuestionCardList from './components/QuestionCardList';
 class App extends Component {
 
   state = {
-    incorrect_answers : [],
+    all_answers : [],
     correct_answer: "",
     question: ""
   };
@@ -22,11 +22,36 @@ class App extends Component {
                   this.setState(prevState =>({
                     question : json.results[0].question,
                     correct_answer: json.results[0].correct_answer,
-                    incorrect_answers: json.results[0].incorrect_answers
-                  }));       
-                  console.log(json.results[0].incorrect_answers);
+                    all_answers: json.results[0].incorrect_answers
+                  }));    
+                  this.state.all_answers.push(this.state.correct_answer);   
+                 this.setState(({
+                  all_answers: this.shuffle(this.state.all_answers)
+                 }));
+                  
                 });
   }
+
+ shuffle = (array) => {
+    let currentIndex = array.length,
+        temporaryValue, randomIndex;
+    console.log("Array inicial: " + array);
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    console.log(array);
+    return array;
+}
+
 
   render() {
     return (
@@ -34,16 +59,16 @@ class App extends Component {
         <ScoreComponent/>
         <div className="container h-100">
           <div className="row h-100 justify-content-center align-items-center">
-            <ConfigComponent/>
+            <ConfigComponent/>            
             <div className="card text-center cardQClass" style={{width: "60rem"}}>
                 <div className="card-body">
                   <h5 className="card-title">Question</h5>
                   <p className="card-text" id="cardQ">{this.state.question}</p>
                 </div>
             </div>
-            <QuestionCardList ianswers={this.state.incorrect_answers} canswer={this.state.correct_answer}/>
+            <QuestionCardList answers={this.state.all_answers} canswer={this.state.correct_answer}/>
           </div>
-
+          <hr/>
           <button id="btnNewQ" type="button" className="btn btn-primary btn-lg btn-block" onClick={this.addNewQuestion}>New question</button>
         </div>
       </div>
