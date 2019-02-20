@@ -8,7 +8,7 @@ class QuestionCard extends Component{
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title"></h5>
-                <p className="card-text">{props.question}</p>
+                <p className="card-text">{props}</p>
               </div>
             </div>
           </div>

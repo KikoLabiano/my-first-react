@@ -5,9 +5,8 @@ const QuestionCardList = (props) => {
     return(
         <div>
             <div className="row">
-            {/* {props.questions.map(questionCard => <QuestionCard key={questionCard.id} {...questionCard}/>)}  */}
-            </div>
-            <div className="row">
+            {/* {console.log(props.ianswers)} */}
+            {props.ianswers.map((questionCard,i) => <QuestionCard key={i} text={questionCard[i]}/>)}
             </div>
         </div>
       );

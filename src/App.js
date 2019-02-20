@@ -8,7 +8,8 @@ import QuestionCardList from './components/QuestionCardList';
 class App extends Component {
 
   state = {
-    answers : [],
+    incorrect_answers : [],
+    correct_answer: "",
     question: ""
   };
 
@@ -18,9 +19,12 @@ class App extends Component {
                     return response.json();
                     //this.questions.concat(response.json());
                 }).then((json) => {
-                  this.setState(prevState=>({
-                    question : json.results[0].question
-                  }));                
+                  this.setState(prevState =>({
+                    question : json.results[0].question,
+                    correct_answer: json.results[0].correct_answer,
+                    incorrect_answers: json.results[0].incorrect_answers
+                  }));       
+                  console.log(json.results[0].incorrect_answers);
                 });
   }
 
@@ -37,7 +41,7 @@ class App extends Component {
                   <p className="card-text" id="cardQ">{this.state.question}</p>
                 </div>
             </div>
-            <QuestionCardList />
+            <QuestionCardList ianswers={this.state.incorrect_answers} canswer={this.state.correct_answer}/>
           </div>
 
           <button id="btnNewQ" type="button" className="btn btn-primary btn-lg btn-block" onClick={this.addNewQuestion}>New question</button>
