@@ -10,11 +10,14 @@ class App extends Component {
   state = {
     all_answers : [],
     correct_answer: "",
-    question: ""
+    question: "",
+    difficulty: "easy",
+    category: "",
+    type: ""
   };
 
   addNewQuestion = ()=>{
-    fetch('https://opentdb.com/api.php?amount=1&difficulty=easy')
+    fetch(`https://opentdb.com/api.php?amount=1&difficulty=${this.state.difficulty}&category=${this.state.category}&type=${this.state.type}`)
                 .then((response) => {   
                     return response.json();
                 }).then((json) => {

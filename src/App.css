@@ -24,7 +24,7 @@
 }
 
 .card:not(.cardQClass):hover{
-  background-color: rgba(128, 128, 128, 0.51);
+  border: 1px solid rgba(128, 128, 128, 0.51);
   cursor: pointer;
 }
 
