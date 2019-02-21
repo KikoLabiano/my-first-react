@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
 
 class ConfigComponent extends Component{
+
+constructor(props){
+      super(props);
+      this.trivia_category = React.createRef();
+      this.trivia_difficulty = React.createRef();
+      this.trivia_type = React.createRef();
+}
+
+    handleCategChange = (event)=>{
+        this.props.onSelectCategory(event.target.value);    
+    }
+    handleDiffChange = (event)=>{
+        this.props.onSelectDifficulty(event.target.value);
+        //Refs not working??
+        //this.props.onSelectDifficulty(this.trivia_difficulty.value);    
+    }
+    handleTypeChange = (event)=>{
+        this.props.onSelectType(event.target.value);    
+    }
+
     render(){
         return(
         <div>
             <label htmlFor="trivia_category">Select Category: </label>
-            <select id="trivia_category" name="trivia_category" className="form-control">
-            <option value="any">Any Category</option>
+            <select id="trivia_category" name="trivia_category" className="form-control" onChange={this.handleCategChange} ref={this.trivia_category}>
+            <option value="">Any Category</option>
             <option value="9">General Knowledge</option>
             <option value="10">Entertainment: Books</option>
             <option value="11">Entertainment: Film</option>
@@ -36,8 +56,8 @@ class ConfigComponent extends Component{
             <br/>
 
             <label htmlFor="trivia_difficulty">Select Difficulty: </label>
-            <select id="trivia_difficulty" name="trivia_difficulty" className="form-control">
-            <option value="any">Any Difficulty</option>
+            <select id="trivia_difficulty" name="trivia_difficulty" className="form-control" onChange={this.handleDiffChange}  ref={this.trivia_difficulty}>
+            <option value="">Any Difficulty</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
@@ -46,8 +66,8 @@ class ConfigComponent extends Component{
             <br/>
 
             <label htmlFor="trivia_type">Select Type: </label>
-            <select id="trivia_type" name="trivia_type" className="form-control">&gt;
-            <option value="any">Any Type</option>
+            <select id="trivia_type" name="trivia_type" className="form-control" onChange={this.handleTypeChange}  ref={this.trivia_type}>&gt;
+            <option value="">Any Type</option>
             <option value="multiple">Multiple Choice</option>
             <option value="boolean">True / False</option>
             </select>
