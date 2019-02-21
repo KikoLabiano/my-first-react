@@ -17,16 +17,15 @@ class App extends Component {
     fetch('https://opentdb.com/api.php?amount=1&difficulty=easy')
                 .then((response) => {   
                     return response.json();
-                    //this.questions.concat(response.json());
                 }).then((json) => {
                   this.setState(prevState =>({
                     question : json.results[0].question,
                     correct_answer: json.results[0].correct_answer,
                     all_answers: json.results[0].incorrect_answers
                   }));    
-                  this.state.all_answers.push(this.state.correct_answer);   
+                  //Shuffle the answers (incorrect plus correct one)                  
                  this.setState(({
-                  all_answers: this.shuffle(this.state.all_answers)
+                  all_answers: this.shuffle([...this.state.all_answers,this.state.correct_answer])
                  }));
                   
                 });
@@ -42,13 +41,11 @@ class App extends Component {
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-
         // And swap it with the current element.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-    console.log(array);
     return array;
 }
 
@@ -66,7 +63,7 @@ class App extends Component {
                   <p className="card-text" id="cardQ">{this.state.question}</p>
                 </div>
             </div>
-            <QuestionCardList answers={this.state.all_answers} canswer={this.state.correct_answer}/>
+            <QuestionCardList answers={this.state.all_answers} canswer={this.state.correct_answer} nquestion={this.addNewQuestion}/>
           </div>
           <hr/>
           <button id="btnNewQ" type="button" className="btn btn-primary btn-lg btn-block" onClick={this.addNewQuestion}>New question</button>

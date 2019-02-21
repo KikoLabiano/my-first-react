@@ -27,3 +27,11 @@
   background-color: rgba(128, 128, 128, 0.51);
   cursor: pointer;
 }
+
+.correct {
+  background-color: #47FF75;
+}
+
+.wrong{
+  background-color: red;
+}

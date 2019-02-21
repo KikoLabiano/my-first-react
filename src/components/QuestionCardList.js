@@ -5,8 +5,7 @@ const QuestionCardList = (props) => {
     return(
         <div>
             <div className="row">
-            {console.log(props.answers)}
-            {props.answers.map((questionCard,i) => <QuestionCard key={i} text={questionCard}/>)}
+            {props.answers.map((questionCard,i) => <QuestionCard key={i} text={questionCard} canswer={props.canswer} nquestion = {props.nquestion}/>)}
             </div>
         </div>
       );
