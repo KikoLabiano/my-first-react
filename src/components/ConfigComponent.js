@@ -51,6 +51,8 @@ class ConfigComponent extends Component{
             <option value="multiple">Multiple Choice</option>
             <option value="boolean">True / False</option>
             </select>
+
+            <hr/>
         </div>
     );
     }
