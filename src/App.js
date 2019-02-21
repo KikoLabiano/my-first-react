@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ScoreComponent from './components/ScoreComponent';
 import ConfigComponent from './components/ConfigComponent';
-import QuestionCardList from './components/QuestionCardList';
+import AnswerCardList from './components/AnswerCardList';
 
 class App extends Component {
 
@@ -63,7 +63,7 @@ class App extends Component {
                   <p className="card-text" id="cardQ">{this.state.question}</p>
                 </div>
             </div>
-            <QuestionCardList answers={this.state.all_answers} canswer={this.state.correct_answer} nquestion={this.addNewQuestion}/>
+            <AnswerCardList answers={this.state.all_answers} canswer={this.state.correct_answer} nquestion={this.addNewQuestion}/>
           </div>
           <hr/>
           <button id="btnNewQ" type="button" className="btn btn-primary btn-lg btn-block" onClick={this.addNewQuestion}>New question</button>

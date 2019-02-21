@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class QuestionCard extends Component {
+class AnswerCard extends Component {
   state={
     classes: ["card"]
   }
@@ -41,4 +41,4 @@ render(props){
         );
         }
       }
-export default QuestionCard;
+export default AnswerCard;
