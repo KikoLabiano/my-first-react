@@ -13,10 +13,13 @@ class App extends Component {
     question: "",
     difficulty: "easy",
     category: "",
-    type: ""
+    type: "",
+    counterWrong: 0,
+    counterCorrect: 0
   };
 
   addNewQuestion = ()=>{
+    console.log(`https://opentdb.com/api.php?amount=1&difficulty=${this.state.difficulty}&category=${this.state.category}&type=${this.state.type}`)
     fetch(`https://opentdb.com/api.php?amount=1&difficulty=${this.state.difficulty}&category=${this.state.category}&type=${this.state.type}`)
                 .then((response) => {   
                     return response.json();
@@ -33,6 +36,25 @@ class App extends Component {
                   
                 });
   }
+
+handleDifficulty = (difValue) => {
+  console.log(difValue);
+  this.setState({
+    difficulty: difValue
+  });
+}
+
+handleCategory = (difCategory) => {
+  this.setState({
+    category: difCategory
+  });
+}
+
+handleType = (difType) => {
+  this.setState({
+    type: difType
+  });
+}
 
  shuffle = (array) => {
     let currentIndex = array.length,
@@ -56,17 +78,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ScoreComponent/>
+        <ScoreComponent countCorrect={this.state.counterCorrect} countWrong={this.state.counterWrong}/>
         <div className="container h-100">
           <div className="row h-100 justify-content-center align-items-center">
-            <ConfigComponent/>            
+            <ConfigComponent onSelectDifficulty={this.handleDifficulty} onSelectCategory={this.handleCategory} onSelectType={this.handleType}/>            
             <div className="card text-center cardQClass" style={{width: "60rem"}}>
                 <div className="card-body">
                   <h5 className="card-title">Question</h5>
                   <p className="card-text" id="cardQ">{this.state.question}</p>
                 </div>
             </div>
-            <AnswerCardList answers={this.state.all_answers} canswer={this.state.correct_answer} nquestion={this.addNewQuestion}/>
+            <AnswerCardList answers={this.state.all_answers} canswer={this.state.correct_answer} nquestion={this.addNewQuestion} />
           </div>
           <hr/>
           <button id="btnNewQ" type="button" className="btn btn-primary btn-lg btn-block" onClick={this.addNewQuestion}>New question</button>
