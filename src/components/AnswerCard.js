@@ -10,11 +10,13 @@ class AnswerCard extends Component {
       this.setState(prevState => ({
         classes: [...prevState.classes, "correct"]
       }));
+      this.props.updateScore({correct:1,incorrect:0});
     }
     else{
       this.setState(prevState => ({
         classes: [...prevState.classes, "wrong"]
-      }));
+      }));      
+      this.props.updateScore({correct:0,incorrect:1});
     }
     //Wait a second until parent newQuestion function is called
     setTimeout(()=>{
@@ -28,7 +30,7 @@ class AnswerCard extends Component {
     
   } 
 
-render(props){  
+render(){  
         return(
             <div className="col-sm-6 cardA">
             <div className={this.state.classes.join(' ')} onClick={this.checkAnswer}>

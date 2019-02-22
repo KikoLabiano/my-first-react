@@ -35,3 +35,7 @@
 .wrong{
   background-color: red;
 }
+
+.card-text-counter{
+  font-size: 3em;
+}

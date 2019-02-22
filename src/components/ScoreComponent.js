@@ -7,13 +7,13 @@ class ScoreComponent extends Component{
                 <div className="card text-white bg-success mb-3 float-left" style={{maxWidth: '18rem'}}>
                     <div className="card-header">Correct answers</div>
                     <div className="card-body card-body-counter">
-                    <p className="card-text-counter" id="countCorrect">0</p>
+                    <p className="card-text-counter" id="countCorrect">{this.props.countCorrect}</p>
                     </div>
                 </div>
                 <div className="card text-white bg-danger mb-3 float-right" style={{maxWidth: '18rem'}}>
                     <div className="card-header">Incorrect answers</div>
                     <div className="card-body card-body-counter">
-                    <p className="card-text-counter" id="countIncorrect">0</p>
+                    <p className="card-text-counter" id="countIncorrect">{this.props.countIncorrect}</p>
                     </div>
                 </div>
             </div>
