@@ -18,8 +18,7 @@ class App extends Component {
     counterCorrect: 0
   };
 
-  addNewQuestion = ()=>{    
-    console.log(`https://opentdb.com/api.php?amount=1&difficulty=${this.state.difficulty}&category=${this.state.category}&type=${this.state.type}`);
+  addNewQuestion = ()=>{        
     fetch(`https://opentdb.com/api.php?amount=1&difficulty=${this.state.difficulty}&category=${this.state.category}&type=${this.state.type}`)
                 .then((response) => {   
                     return response.json();
@@ -38,7 +37,6 @@ class App extends Component {
   }
 
 handleDifficulty = (difValue) => {
-  console.log(difValue);
   this.setState({
     difficulty: difValue
   });
@@ -66,17 +64,14 @@ handleScore = (result) => {
     this.setState({
       counterIncorrect:this.state.counterIncorrect+1
     })
-  }
-  console.log(result.correct,result.incorrect,this.state.counterCorrect,this.state.counterIncorrect);
+  }  
 }
 
  shuffle = (array) => {
     let currentIndex = array.length,
-        temporaryValue, randomIndex;
-    console.log("Array inicial: " + array);
+        temporaryValue, randomIndex;    
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -102,7 +97,7 @@ handleScore = (result) => {
                   <p className="card-text" id="cardQ">{this.state.question}</p>
                 </div>
             </div>
-            <AnswerCardList answers={this.state.all_answers} canswer={this.state.correct_answer} nquestion={this.addNewQuestion} onSelectAnswer={this.handleScore}/>
+            <AnswerCardList answers={this.state.all_answers} canswer={this.state.correct_answer} nquestion={this.addNewQuestion} onSelectedAnswer={this.handleScore}/>
           </div>
           <hr/>
           <button id="btnNewQ" type="button" className="btn btn-primary btn-lg btn-block" onClick={this.addNewQuestion}>New question</button>

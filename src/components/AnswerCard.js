@@ -14,7 +14,7 @@ class AnswerCard extends Component {
     }
     else{
       this.setState(prevState => ({
-        classes: [...prevState.classes, "wrong"]
+        classes: [...prevState.classes, "incorrect"]
       }));      
       this.props.updateScore({correct:0,incorrect:1});
     }
